@@ -3,16 +3,19 @@ const path = require("path");
 
 /**
  * Options:
- * index: path to html entry point for canjs app. Default is 'index.html'
  * 
- * stealConfig: path to steal config. Used for development of canjs app only.
+ * cwd: Current working directory of process. Defaults to `process.cwd()`.
  * 
- * port: port number for server. Default is 8080
+ * root: relative path from cwd to root of canjs application.
  * 
- * dirname: absolute path to root of canjs project
+ * index: relative path from root to entry point index.html.
+ * 
+ * copyPaths: relative path from root any asset paths that should be copied to dist.
+ * 
+ * dist: relative path from cwd (not root) that index and copyPaths should be copied to.
  */
 module.exports = async function migrateToDist(options={}) {
-    console.log(options);
+    console.log('moo-stache-helper migrate-to-dist', options);
 
     const CWD = options.cwd || process.cwd();
     const ROOT = options.root || '';

@@ -4,16 +4,19 @@ const { readFileSync, readJsonSync, pathExistsSync } = require("fs-extra");
 
 /**
  * Options:
- * dirname: absolute path to root of canjs project
  * 
- * index: relative path from root to html entry point for canjs app. Default is 'index.html'
+ * cwd: Current working directory of process. Defaults to `process.cwd()`.
  * 
- * stealConfig: relative path from root to steal config. Used for development of canjs app only.
+ * root: relative path from cwd to root of canjs application.
+ * 
+ * index: relative path from root to entry point index.html.
+ * 
+ * stealConfig: relative path from root to `steal-config.json`. Used for development of canjs application only.
  * 
  * port: port number for server. Default is 8080
  */
 module.exports = async function server(options={}) {
-    console.log(options);
+    console.log('moo-stache-helper server', options);
 
     const app = express();
 
@@ -24,7 +27,6 @@ module.exports = async function server(options={}) {
     const PORT = options.port || 8080;
 
     app.get("/*", function (req, res) {
-        console.log(req.path);
         // Serve files from node_modules, etc
         // This assumes that these files have an extension (thus search for a ".")
         if (req.path.includes(".")) {
