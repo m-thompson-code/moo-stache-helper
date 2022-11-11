@@ -1,0 +1,1 @@
+# moo-stache-helper
